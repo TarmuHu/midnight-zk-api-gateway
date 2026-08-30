@@ -1,68 +1,36 @@
-# Restful-Booker API Testing Portfolio
+# Midnight ZK API Gateway - Midnight Hackathon Submission
 
-[![Run API Tests](https://github.com/TarmuHu/restful-booker-api-testing/actions/workflows/test.yml/badge.svg)](https://github.com/TarmuHu/restful-booker-api-testing/actions/workflows/test.yml)
+Welcome to our submission for the Midnight Hackathon! We built the **Midnight ZK API Gateway**, a middleware solution designed to put users back in control of their personal data by integrating Zero-Knowledge (ZK) proofs into existing API infrastructures.
 
-Welcome! This repository serves as a showcase of my API testing capabilities. It is designed to demonstrate comprehensive automated testing methodologies, continuous integration, and clean, independent script execution using Postman and Newman.
+## Inspiration
+Our project was inspired by the vulnerability of traditional REST APIs that leak user data in plain text. We wanted to build a solution that addresses these privacy concerns by ensuring sensitive information is protected at the edge before it ever reaches legacy backend systems.
 
-## 🚀 Key Skills & Technologies
+## What it does
+The Midnight ZK API Gateway acts as a privacy-preserving middleware. Instead of sending a traditional username and password in plaintext, the client submits a ZK credential to our simulated Gateway. The Gateway verifies the proof and ensures that credentials are never exposed to the legacy backend, seamlessly protecting everyday user privacy while maintaining functionality.
 
-- **API Testing & Automation:** Postman, Newman
-- **Data-Driven Testing (DDT):** Comprehensive CSV-driven test execution.
-- **CI/CD Pipeline:** GitHub Actions for automated, scheduled, and on-demand test runs.
-- **Reporting:** `newman-reporter-htmlextra` (HTML) and JUnit XML reports.
-- **Test Methodologies:** Equivalence Partitioning, Boundary Value Analysis, Data Type Testing, and Security/Negative Testing (e.g., missing tokens, XSS, SQLi).
+## How we built it
+We repurposed an existing API testing portfolio into a Proof of Concept (PoC). To build this, we utilized:
+- **Postman/Newman:** For client simulation and automated data-driven testing (DDT).
+- **GitHub Actions:** To set up our CI/CD pipeline for automated verification.
+- **Postman Echo:** To mock the Midnight ZK Gateway verification endpoint.
+- **Jules AI:** To assist with rapid script generation and refactoring.
 
-## 🧠 Testing Strategy
+## Challenges we ran into
+One of the biggest hurdles we faced during the hackathon was dealing with severe time constraints due to a busy work schedule. Despite this, we focused on delivering a polished and functionally complete prototype within the timeframe.
 
-This project was built with a strict adherence to professional QA standards, incorporating advanced Postman techniques to handle edge cases and maintainable test architecture.
+## Accomplishments that we're proud of
+We are incredibly proud to have successfully demonstrated that a ZK privacy layer can be seamlessly integrated into an existing CI/CD automated API pipeline as a gateway. It proves that you don't need to rebuild legacy systems from scratch to significantly enhance digital privacy and security.
 
-- **Data-Driven Edge Cases:** The test suite systematically verifies field-by-field behavior. CSV files are structured with a "Happy Path" at the top, followed by clustered positive and negative test cases for specific fields.
-- **Strict "OMIT" Handling:** To differentiate between an empty string (`""`) and a completely missing field, the explicit string `"OMIT"` is used in CSV files. The Pre-request scripts interpret this to actively exclude the key from JSON payloads or omit headers completely.
-- **Execution Independence:** Every Postman folder (endpoint) is independently runnable with its respective CSV file. No endpoint relies on the sequential execution of another, ensuring robust and isolated test cases.
-- **Negative Testing & Type Coercion:** When testing negative paths, string values (like `"OneHundred"` instead of `100`) are purposefully sent uncoerced to ensure the API's validation correctly handles invalid data types.
-- **Clean Test Execution:** Variables created during execution (like `dynamicBody` or `token`) are rigorously cleaned up using `pm.variables.unset()` to avoid side-effects across test runs. Response validations utilize Deep Equality checks for thorough assertions.
+## What we learned
+Throughout this weekend, we learned how to conceptualize and design a ZK API Gateway at the edge to protect legacy systems. Exploring how to implement privacy-preserving middleware gave us fresh insights into the future of digital identity and security.
 
-## 🛠️ How to Run Local Tests
+## What's next for Midnight ZK API Gateway
+We plan to replace the mocked endpoint with actual Midnight Compact smart contracts to generate and verify real cryptographic ZK proofs. Eventually, we aim to package this entire solution into a reusable Node.js SDK so other developers can easily add a ZK privacy layer to their own APIs.
 
-You can easily run this test suite locally on your machine. The tests execute via Newman and generate visual HTML and JUnit XML reports.
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) installed on your machine.
-
-### Execution Steps
-
-1.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/TarmuHu/restful-booker-tests.git
-    cd restful-booker-tests
-    ```
-
-    _(Note: adjust URL if necessary based on your actual repository URL)._
-
-2.  **Install dependencies:**
-
-    ```bash
-    npm install
-    ```
-
-3.  **Run the test suite:**
-    ```bash
-    npm test
-    ```
-    _(Note: This executes the `run-tests.sh` bash script, triggering independent test runs for each endpoint)._
-
-### Viewing Test Reports
-
-After execution, test reports are automatically generated in the `reports/` directory.
-
-- Open the `.html` files in any web browser to view the detailed `htmlextra` visual report.
+---
 
 ## 📬 Contact
 
 - **Name:** Tarmu Hu
 - **LinkedIn:** [linkedin.com/in/tarmu-hu-2b7948200](https://www.linkedin.com/in/tarmu-hu-2b7948200)
 - **Portfolio:** [tarmuhu.github.io/cpsc349-portfolio](https://tarmuhu.github.io/cpsc349-portfolio/index.html)
-
-Thank you for reviewing my project! If you have any questions or would like to discuss my QA approach further, please feel free to reach out.
